@@ -1,0 +1,32 @@
+<div
+  #todoList
+  class="todoList bg-[#292929] w-[500px] max-w-full mx-auto p-5 rounded-xl mt-10 shadow-xl"
+>
+  <h1
+    class="text-4xl font-bold flex items-center justify-between text-lime-300"
+  >
+    Todo List <span class="text-3xl">✏️</span>
+  </h1>
+  <form (submit)="addItem(itemTitle.value, $event)">
+    <input
+      #itemTitle
+      [value]="inputValue"
+      type="text"
+      class="bg-[#191919] border-none focus:ring-0 text-lime-100 my-5 rounded-lg w-full"
+      placeholder="Write something... + enter"
+    />
+    {{ inputValue }}
+  </form>
+  <ul
+    class="flex flex-col gap-3 max-h-[500px] overflow-y-auto overflow-x-hidden"
+    ngFor="let item of [1,2,3,4]"
+  >
+    @for (item of todoListItems; track item) {
+    <todo-list-item
+      [id]="item.id"
+      [checked]="item.done"
+      [title]="item.title"
+    ></todo-list-item>
+    }
+  </ul>
+</div>
