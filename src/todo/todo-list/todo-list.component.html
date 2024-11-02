@@ -7,25 +7,23 @@
   >
     Todo List <span class="text-3xl">✏️</span>
   </h1>
-  <form (submit)="addItem(itemTitle.value, $event)">
-    <input
-      #itemTitle
-      [value]="inputValue"
-      type="text"
-      class="bg-[#191919] border-none focus:ring-0 text-lime-100 my-5 rounded-lg w-full"
-      placeholder="Write something... + enter"
-    />
-    {{ inputValue }}
-  </form>
+  <input
+    [(ngModel)]="inputValue"
+    type="text"
+    class="bg-[#191919] border-none focus:ring-0 text-lime-100 my-5 rounded-lg w-full"
+    placeholder="Write something... + enter"
+    (keyup.enter)="addItem()"
+  />
   <ul
     class="flex flex-col gap-3 max-h-[500px] overflow-y-auto overflow-x-hidden"
-    ngFor="let item of [1,2,3,4]"
   >
     @for (item of todoListItems; track item) {
     <todo-list-item
       [id]="item.id"
       [checked]="item.done"
       [title]="item.title"
+      (delete)="deleteItem($event)"
+      (check)="checkItem($event)"
     ></todo-list-item>
     }
   </ul>
